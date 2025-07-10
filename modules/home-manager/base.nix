@@ -17,7 +17,7 @@
     homeDirectory = "/home/${vars.userName}";
     stateVersion = "25.05";
     sessionVariables = {
-      SOPS_AGE_KEY_FILE "$HOME/.config/sops/age/keys.txt";
+      SOPS_AGE_KEY_FILE = "$HOME/.config/sops/age/keys.txt";
     };
   };
 
