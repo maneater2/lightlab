@@ -7,7 +7,7 @@
   sops.secrets = {
     "cloudflare-tunnel" = {
       format = "json";
-      sopsFile = ./../secrets/cloudflare-tunnel;
+      sopsFile = ./../secrets/cloudflare-tunnel.json;
     };
     "cloudflare-token" = {
       format = "binary";
