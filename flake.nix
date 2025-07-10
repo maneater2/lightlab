@@ -23,7 +23,7 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
-    vars = import ./vars.nix
+    vars = import ./vars.nix;
 
     systems = ["x86_64-linux"];
     forAllSystems = nixpkgs.lib.genAttrs systems;
