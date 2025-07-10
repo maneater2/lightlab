@@ -37,7 +37,7 @@
   };
 
   sops = {
-    defaultSops = ./../../secrets/secrets.yaml;
+    defaultSopsFile = ./../../secrets/secrets.yaml;
     age.sshKeyPaths = ["/nix/secret/initrd/ssh_host_ed25519_key"];
     secrets."user-password".neededForUsers = true;
     secrets."user-password" = {};
