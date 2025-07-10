@@ -1,8 +1,12 @@
 {pkgs, ...}: {
   home = {
     packages = with pkgs; [
-      inter
-      iosevka
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-emoji
+      
+      nerd-fonts.jetbrains-mono
     ];
   };
 }
