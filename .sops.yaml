@@ -1,5 +1,5 @@
 keys:
-  - &carrotcake age18kea6vewtmupzm33m72uxjv5hl0c8tckzzt0rq6gdlulwzxldv7su05u0w
+  - &carrotcake age1tta36zrnz7nyxplw97mg98cvl583lssv76cjfy2xkkn96ryyj3lq3k04cf
 creation_rules:
   - path_regex: secrets/[^/]+(\.(yaml|json|env|ini|conf))?$
     key_groups:
