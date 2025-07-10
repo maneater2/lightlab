@@ -24,7 +24,7 @@
         credentialsFile = config.sops.secrets."cloudflare-tunnel".path;
         default = "http_status:404";
         ingress = {
-          "watch.chengeric.com" = {
+          "watch.balticumvirtus.com" = {
             service = "http://localhost:8096";
           };
         };

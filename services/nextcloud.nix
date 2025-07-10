@@ -63,7 +63,7 @@
       virtualHosts = {
         "${config.services.nextcloud.hostName}" = {
           forceSSL = true;
-          useACMEHost = "chengeric.com";
+          useACMEHost = "balticumvirtus.com";
         };
       };
     };
