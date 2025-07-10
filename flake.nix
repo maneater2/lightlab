@@ -38,7 +38,7 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      carrotcake = mkNixOSConfig = ./machines/carrotcake/configuration.nix;
+      carrotcake = mkNixOSConfig ./machines/carrotcake/configuration.nix;
     };
   };
 }
