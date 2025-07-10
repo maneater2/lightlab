@@ -18,7 +18,7 @@
             device = "/dev/disk/by-label/Nix";
 	    allowDiscards = true;
 	  };
-	  "fun" {
+	  "fun" = {
             device = "/dev/disk/by-label/Fun";
 	  };
         };
