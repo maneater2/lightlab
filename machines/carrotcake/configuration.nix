@@ -13,6 +13,10 @@
     ./../../modules/nixos/base.nix
     ./../../modules/nixos/remote-unlock.nix
     ./../../modules/nixos/auto-update.nix
+
+    ./../../services/nextcloud.nix
+    ./../../services/tailscale.nix
+    ./../../services/nixarr.nix
   ];
 
   home-manager = {
