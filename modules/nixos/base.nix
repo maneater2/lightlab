@@ -71,6 +71,7 @@
   networking = {
     firewall.enable = true;
     networkmanager.enable = true;
+    nameservers = [ "1.1.1.1" "9.9.9.9" ];
   };
 
   systemd.services.NetworkManager-wait-online = {
