@@ -10,6 +10,15 @@
     ./_cloudflared.nix
   ];
 
+  sops = {
+    secrets = {
+      "wg.conf" = {
+        format = "binary";
+	sopsFile = ./../secrets/wg.conf;
+      };
+    };
+  };
+
   nixarr = {
     enable = true;
     mediaDir = "/fun";
