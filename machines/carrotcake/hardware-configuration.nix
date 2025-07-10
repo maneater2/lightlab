@@ -15,11 +15,11 @@
         reusePassphrases = true;
 	devices = {
           "cryptroot" = {
-            device = "/dev/disk/by-label/Nix";
+            device = "/dev/disk/by-label/sda2";
 	    allowDiscards = true;
 	  };
 	  "fun" = {
-            device = "/dev/disk/by-label/Fun";
+            device = "/dev/disk/by-label/sdb1";
 	  };
         };
       };
