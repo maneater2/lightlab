@@ -9,6 +9,7 @@
   imports = [
     ./_acme.nix
     ./_nginx.nix
+    ./_cloudflared.nix
   ];
 
   virtualisation.containers.enable = true;
@@ -40,21 +41,25 @@
   virtualisation.oci-containers.backend = "podman";
   virtualisation.oci-containers.containers.pihole = {
     image = "pihole/pihole:latest";
-    autoStart = true;
     ports = [
-      "53:53/udp"
-      "53:53/tcp"
-      "127.0.0.1:10542:80/tcp"
+      "10.0.0.2:53:53/udp"
+      "10.0.0.2:53:53/tcp"
+      "3080:80/tcp"
+      "30443:443/tcp"
     ];
     environment = {
-      TZ = "Europe/Vilnius";
-      WEBPASSWORD = "changeme";  # optionally use SOPS here
+      ServerIP = "10.0.0.2";
     };
     volumes = [
-      "/var/lib/pihole:/etc/pihole"
-      "/var/lib/dnsmasq:/etc/dnsmasq.d"
+      "/var/lib/pihole/:/etc/pihole/"
+      "/var/lib/dnsmasq.d:/etc/dnsmasq.d/"
     ];
-    extraOptions = [ "--cap-add=NET_ADMIN" ];
+    extraOptions = [
+    "--cap-add=NET_ADMIN"
+    "--dns=127.0.0.1"
+    "--dns=1.1.1.1"
+    ];
+    workdir = "/var/lib/pihole/";
   };
 
   services.nginx = {
@@ -69,5 +74,4 @@
       };
     };
   };
-
 }
