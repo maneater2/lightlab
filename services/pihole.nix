@@ -13,7 +13,7 @@
   virtualisation.docker.enable = true;
   virtualisation.oci-containers = {
     backend = "docker";
-    containers = {
+    containers.pihole = {
       name = "pihole";
       image = "pihole/pihole:latest";
       extraOptions = "--restart=unless-stopped";
@@ -26,9 +26,6 @@
       environment = {
         "ServerIP" = "127.0.0.1";
         "WEBPASSWORD" = "changeme";
-        "DNS1" = "1.1.1.1";
-        "DNS2" = "8.8.8.8";
-        "VIRUTAL_HOST" = "pihole.balticumvirtus.com";
       };
       volumes = [
         "/var/lib/pihole:/etc/pihole"
