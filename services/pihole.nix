@@ -6,6 +6,11 @@
 }:
 {
 
+  imports = [
+    ./_acme.nix
+    ./_nginx.nix
+  ];
+
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;  # enables Docker CLI via Podman
@@ -48,7 +53,7 @@
     extraOptions = [ "--cap-add=NET_ADMIN" ];
   };
 
-  nginx = {
+  services.nginx = {
     virtualHosts = {
       "pihole.balticumvirtus.com" = {
         forceSSL = true;
