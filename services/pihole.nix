@@ -11,30 +11,32 @@
   ];
 
   virtualisation.docker.enable = true;
-  virtualisation.docker.containers = [
-    {
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = {
       name = "pihole";
+      autoStart = true;
       image = "pihole/pihole:latest";
       extraOptions = "--restart=unless-stopped";
       ports = [
         "53:53/udp"
-	"53:53/tcp"
-	"3080:80/tcp"
-	"30443:443/tcp"
+        "53:53/tcp"
+        "3080:80/tcp"
+        "30443:443/tcp"
       ];
       environment = {
         "ServerIP" = "127.0.0.1";
-	"WEBPASSWORD" = "changeme";
-	"DNS1" = "1.1.1.1";
-	"DNS2" = "8.8.8.8";
-	"VIRUTAL_HOST" = "pihole.balticumvirtus.com";
+        "WEBPASSWORD" = "changeme";
+        "DNS1" = "1.1.1.1";
+        "DNS2" = "8.8.8.8";
+        "VIRUTAL_HOST" = "pihole.balticumvirtus.com";
       };
       volumes = [
         "/var/lib/pihole:/etc/pihole"
-	"/var/lib/dnsmasq.d:/etc/dnsmasq.d"
+        "/var/lib/dnsmasq.d:/etc/dnsmasq.d"
       ];
-    }
-  ];
+    };
+  };
 
   networking.firewall.allowedUDPPorts = ["53"];
   networking.firewall.allowedTCPPorts = ["53"];
