@@ -46,7 +46,7 @@
 	useACMEHost = "balticumvirtus.com";
 	locations."/" = {
           recommendedProxySettings = true;
-	  proxyPass = "http://127.0.0.1:30443"
+	  proxyPass = "http://127.0.0.1:30443";
 	};
       };
     };
