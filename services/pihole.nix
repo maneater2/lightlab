@@ -15,7 +15,6 @@
     backend = "docker";
     containers = {
       name = "pihole";
-      autoStart = true;
       image = "pihole/pihole:latest";
       extraOptions = "--restart=unless-stopped";
       ports = [
