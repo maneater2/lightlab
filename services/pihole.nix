@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }:
@@ -10,28 +9,46 @@
     ./_cloudflared.nix
   ];
 
-  virtualisation.docker.enable = true;
-  virtualisation.oci-containers = {
-    backend = "docker";
-    containers.pihole = {
-      name = "pihole";
-      image = "pihole/pihole:latest";
-      extraOptions = "--restart=unless-stopped";
-      ports = [
-        "53:53/udp"
-        "53:53/tcp"
-        "3080:80/tcp"
-        "30443:443/tcp"
-      ];
-      environment = {
-        "ServerIP" = "127.0.0.1";
-        "WEBPASSWORD" = "changeme";
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      autoPrune = {
+        enable = true;
+	dates = "weekly";
+	flags = [
+          "--filer=until=24h"
+	  "--filter=label!=important"
+	];
       };
-      volumes = [
-        "/var/lib/pihole:/etc/pihole"
-        "/var/lib/dnsmasq.d:/etc/dnsmasq.d"
-      ];
+      defaultNetwork.settings.dns_enabled = true;
     };
+  };
+
+  environment.systemPackages = with pkgs; [
+    podman-compose
+  ];
+
+  virtualisation.oci-containers.containers."pihole" = {
+    image = "pihole/pihole";
+    ports = [
+      "53:53/tcp"
+      "53:53/udp"
+      "3080:80/tcp"
+      "30443:443/tcp"
+    ];
+    environment = {
+      TZ = "Europe/Vilnius";
+      FTLCONFG_webserver_api_password = "changeme";
+      FTLCONF_dns_listeningMode = "all";
+    };
+    volumes = [
+      "/var/lib/pihole:/etc/pihole"
+      "/var/lib/dnsmasq.d:/etc/dnsmasq.d"
+    ];
+    extraOptions = [
+      "--cap-add=NET_ADMIN"
+    ];
   };
 
   networking.firewall.allowedUDPPorts = ["53"];
