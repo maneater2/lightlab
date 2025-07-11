@@ -15,12 +15,7 @@
   networking.firewall.allowedTCPPorts = [ 53 ];
   networking.firewall.allowedUDPPorts = [ 53 ];
 
-  virtualisation.containers.enable = true;
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;  # enables Docker CLI via Podman
-    defaultNetwork.settings.dns_enabled = true;  # enables DNS in containers
-  };
+  virtualisation.docker.enable = true;
 
   environment.persistence."/nix/persist".directories = [
     "/var/lib/containers"
@@ -28,22 +23,13 @@
     "/var/lib/dnsmasq.d"
   ];
 
-  environment.systemPackages = with pkgs; [
-    dive
-    podman-tui
-    podman-compose
-  ];
-
   systemd.tmpfiles.rules = [
     "d /var/lib/pihole 0755 root root"
     "d /var/lib/dnsmasq.d 0755 root root"
   ];
 
-  users.users.${vars.userName}.extraGroups = ["podman"];
-
-  virtualisation.oci-containers.backend = "podman";
-  virtualisation.oci-containers.containers.pihole = {
-    image = "docker.io/pihole/pihole:latest";
+  virtualisation.docker.containers.pihole = {
+    image = "pihole/pihole:latest";
     autoStart = true;
     ports = [
       "53:53/udp"
