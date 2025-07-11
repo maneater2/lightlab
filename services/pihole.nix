@@ -11,6 +11,7 @@
     ./_nginx.nix
   ];
 
+  virtualisation.containers.enable = true;
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;  # enables Docker CLI via Podman
@@ -24,7 +25,8 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    podman
+    dive
+    podman-tui
     podman-compose
   ];
 
@@ -35,6 +37,7 @@
 
   users.users.${vars.userName}.extraGroups = ["podman"];
 
+  virtualisation.oci-containers.backend = "podman";
   virtualisation.oci-containers.containers.pihole = {
     image = "pihole/pihole:latest";
     ports = [
