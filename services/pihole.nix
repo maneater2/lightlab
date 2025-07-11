@@ -1,10 +1,8 @@
 {
   config,
   pkgs,
-  vars,
   ...
 }:
-
 {
   imports = [
     ./_acme.nix
@@ -12,15 +10,34 @@
     ./_cloudflared.nix
   ];
 
-  services.piHole = {
-    enable = true;
-    interface = "eno1";
-    dnsIp = "127.0.0.1";
-    ipAddress = "0.0.0.0"; # Default to listen on all interfaces
-    blockingMode = "IP";   # IP or DNS-based blocking
-    webInterface = true;   # Enable the Pi-hole web interface
-    webPassword = "changeme"; # TODO use sops
-  };
+  virtualisation.docker.enable = true;
+  virtualisation.docker.containers = [
+    {
+      name = "pihole";
+      image = "pihole/pihole:latest";
+      extraOptions = "--restart=unless-stopped";
+      ports = [
+        "53:53/udp"
+	"53:53/tcp"
+	"3080:80/tcp"
+	"30443:443/tcp"
+      ];
+      environment = {
+        "ServerIP" = "127.0.0.1";
+	"WEBPASSWORD" = "changeme";
+	"DNS1" = "1.1.1.1";
+	"DNS2" = "8.8.8.8";
+	"VIRUTAL_HOST" = "pihole.balticumvirtus.com";
+      };
+      volumes = [
+        "/var/lib/pihole:/etc/pihole"
+	"/var/lib/dnsmasq.d:/etc/dnsmasq.d"
+      ];
+    }
+  ];
+
+  networking.firewall.allowedUDPPorts = ["53"];
+  networking.firewall.allowedTCPPorts = ["53"];
 
   services.nginx = {
     virtualHosts = {
@@ -28,24 +45,25 @@
         forceSSL = true;
 	useACMEHost = "balticumvirtus.com";
 	locations."/" = {
-          proxyPass = "http://127.0.0.1:8080";
-	  recommendedProxySettings = true;
+          recommendedProxySettings = true;
+	  proxyPass = "http://127.0.0.1:30443"
 	};
       };
     };
   };
 
-  networking.firewall.allowedTCPPorts = [53];
-
-  environment.persistence."/nix/persist" = {
-    directories = [
-      "/etc/pihole"
-      "/var/lib/pihole"
+  systemd = {
+    tmpfiles.rules = [
+      "d /var/lib/pihole 0755 root root"
+      "d /var/lib/dnsmasq.d 0755 root root"
     ];
   };
 
-  systemd.tmpfiles.rules = [
-    "d /var/lib/pihole 0755 root root"
-    "d /etc/pihole 0755 root root"
-  ];
+  environment.persistence."/nix/persist" = {
+    directories = [
+      "/var/lib/pihole"
+      "/var/lib/dnsmasq.d"
+    ];
+  };
+
 }
