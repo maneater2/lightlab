@@ -40,10 +40,11 @@
   virtualisation.oci-containers.backend = "podman";
   virtualisation.oci-containers.containers.pihole = {
     image = "pihole/pihole:latest";
+    autoStart = true;
     ports = [
       "53:53/udp"
       "53:53/tcp"
-      "10542:80/tcp"
+      "127.0.0.1:10542:80/tcp"
     ];
     environment = {
       TZ = "Europe/Vilnius";
