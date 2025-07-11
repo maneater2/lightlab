@@ -35,7 +35,7 @@
     ports = [
       "53:53/udp"
       "53:53/tcp"
-      "80:80/tcp"
+      "10542:80/tcp"
     ];
     environment = {
       TZ = "Europe/Vilnius";
@@ -46,6 +46,19 @@
       "/var/lib/dnsmasq:/etc/dnsmasq.d"
     ];
     extraOptions = [ "--cap-add=NET_ADMIN" ];
+  };
+
+  nginx = {
+    virtualHosts = {
+      "pihole.balticumvirtus.com" = {
+        forceSSL = true;
+        useACMEHost = "balticumvirtus.com";
+	locations."/" = {
+          recommendedProxySettings = true;
+          proxyPass = "http://127.0.0.1:10542";
+        };
+      };
+    };
   };
 
 }

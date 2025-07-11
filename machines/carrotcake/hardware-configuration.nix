@@ -15,11 +15,11 @@
         reusePassphrases = true;
 	devices = {
           "cryptroot" = {
-            device = "/dev/sda2";
+            device = "/dev/disk/by-id/ata-INTENSO_SSD_AA000000000000000524-part2";
 	    allowDiscards = true;
 	  };
 	  "fun" = {
-            device = "/dev/sdb1";
+            device = "/dev/disk/by-id/ata-CT1000BX500SSD1_2512E9B11AD2-part1";
 	  };
         };
       };
