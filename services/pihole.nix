@@ -12,6 +12,9 @@
     ./_cloudflared.nix
   ];
 
+  networking.firewall.allowedTCPPorts = [ 53 ];
+  networking.firewall.allowedUDPPorts = [ 53 ];
+
   virtualisation.containers.enable = true;
   virtualisation.podman = {
     enable = true;
@@ -22,7 +25,7 @@
   environment.persistence."/nix/persist".directories = [
     "/var/lib/containers"
     "/var/lib/pihole"
-    "/var/lib/dnsmasq"
+    "/var/lib/dnsmasq.d"
   ];
 
   environment.systemPackages = with pkgs; [
@@ -33,26 +36,28 @@
 
   systemd.tmpfiles.rules = [
     "d /var/lib/pihole 0755 root root"
-    "d /var/lib/dnsmasq 0755 root root"
+    "d /var/lib/dnsmasq.d 0755 root root"
   ];
 
   users.users.${vars.userName}.extraGroups = ["podman"];
 
   virtualisation.oci-containers.backend = "podman";
   virtualisation.oci-containers.containers.pihole = {
-    image = "pihole/pihole:latest";
+    image = "docker.io/pihole/pihole:latest";
+    autoStart = true;
     ports = [
-      "10.0.0.2:53:53/udp"
-      "10.0.0.2:53:53/tcp"
+      "53:53/udp"
+      "53:53/tcp"
       "3080:80/tcp"
       "30443:443/tcp"
     ];
     environment = {
-      ServerIP = "10.0.0.2";
+      TZ = "Europe/Vilnius";
+      WEBPASSWORD = "changeme";
     };
     volumes = [
-      "/var/lib/pihole/:/etc/pihole/"
-      "/var/lib/dnsmasq.d:/etc/dnsmasq.d/"
+      "/var/lib/pihole:/etc/pihole"
+      "/var/lib/dnsmasq.d:/etc/dnsmasq.d"
     ];
     extraOptions = [
     "--cap-add=NET_ADMIN"
