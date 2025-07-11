@@ -15,10 +15,10 @@
     ./../../modules/nixos/remote-unlock.nix
     ./../../modules/nixos/auto-update.nix
 
+    ./../../services/pihole.nix
     ./../../services/nextcloud.nix
     ./../../services/tailscale.nix
     ./../../services/nixarr.nix
-    ./../../services/pihole.nix
   ];
 
   home-manager = {
