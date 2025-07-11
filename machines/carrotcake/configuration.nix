@@ -18,7 +18,7 @@
     ./../../services/nextcloud.nix
     ./../../services/tailscale.nix
     ./../../services/nixarr.nix
-    ./../../services/podman.nix
+    ./../../services/pihole.nix
   ];
 
   home-manager = {
