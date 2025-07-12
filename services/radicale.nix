@@ -10,7 +10,10 @@
     ./_cloudflared.nix
   ];
 
-  sops.secrets."radicale-htpasswd" = {};
+  sops.secrets."radicale-htpasswd" = {
+    owner = "radicale";
+    group = "radicale";
+  };
 
   services = {
     radicale = {
