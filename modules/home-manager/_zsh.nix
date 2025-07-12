@@ -33,9 +33,6 @@
         eval "$(ssh-agent -s)" &> /dev/null
         ssh-add ~/.ssh/id_ed25519 &> /dev/null
       fi
-    '';
-
-    initExtra = ''
       # Start Tmux automatically if not already running. No Tmux in TTY
       if [ -z "$TMUX" ] && [ -n "$DISPLAY" ]; then
         tmux attach-session -t default || tmux new-session -s default
