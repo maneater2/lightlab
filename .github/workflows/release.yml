@@ -20,12 +20,12 @@ jobs:
       - name: Build tarball
         run: |
           nix_bin=$(which nix)
-          sudo $nix_bin run .#nixosConfigurations.workchng.config.system.build.tarballBuilder
+          sudo $nix_bin run .#nixosConfigurations.strawberrypie.config.system.build.tarballBuilder
 
       - name: Build ISO
         run: |
           nix_bin=$(which nix)
-          sudo $nix_bin build .#nixosConfigurations.iso1chng.config.system.build.isoImage
+          sudo $nix_bin build .#nixosConfigurations.zeppelin.config.system.build.isoImage
 
       - name: Rename ISO
         run: sudo mv result/iso/nixos-*.iso nixos.iso
