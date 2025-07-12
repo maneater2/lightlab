@@ -1,0 +1,50 @@
+{ config, ... }: {
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+
+    shellAliases = {
+        sw = "nh os switch";
+        upd = "nh os switch --update";
+        hms = "nh home switch";
+
+        r = "ranger";
+        v = "nvim";
+        se = "sudoedit";
+        microfetch = "microfetch && echo";
+
+        gs = "git status";
+        ga = "git add";
+        gc = "git commit";
+        gp = "git push";
+
+        ".." = "cd ..";
+      };
+
+    history.size = 10000;
+    history.path = "${config.xdg.dataHome}/zsh/history";
+
+    initContent = ''
+      fortune
+
+      if [ -z "$SSH_AUTH_SOCK" ]; then
+        eval "$(ssh-agent -s)" &> /dev/null
+        ssh-add ~/.ssh/id_ed25519 &> /dev/null
+      fi
+    ''
+
+    initExtra = ''
+      # Start Tmux automatically if not already running. No Tmux in TTY
+      if [ -z "$TMUX" ] && [ -n "$DISPLAY" ]; then
+        tmux attach-session -t default || tmux new-session -s default
+      fi
+
+      # Start UWSM
+      if uwsm check may-start > /dev/null && uwsm select; then
+        exec systemd-cat -t uwsm_start uwsm start default
+      fi
+    '';
+  };
+}

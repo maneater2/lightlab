@@ -5,9 +5,17 @@
 }: {
 
   imports = [
-    ./_sddm/default.nix
-    ./_power-management.nix
-    ./../home-manager/_firefox.nix
+    ./home-manager/firefox.nix
+    ./home-manager/hyprland/default.nix
+  ];
+
+  home.packages = with pkgs; [
+    code-cursor
+    imv
+    mpv
+    obs-studio
+    pavucontrol
+    vesktop
   ];
 
   environment.persistence."/nix/persist" = {

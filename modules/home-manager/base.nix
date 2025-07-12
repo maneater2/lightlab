@@ -11,6 +11,7 @@
     ./_packages.nix
     ./_zsh.nix
     ./_gtk.nix
+    ./_neovim.nix
   ];
 
   home = {
@@ -23,26 +24,9 @@
   };
 
   programs = {
-    helix = {
-      enable = true;
-      defaultEditor = true;
-      settings = {
-        theme = "dark_high_contrast";
-      };
-    };
     fzf = {
       enable = true;
       enableZshIntegration = true;
-    };
-    zellij = {
-      enable = true;
-      settings = {
-        theme = "dracula";
-      };
-    };
-    tealdeer = {
-      enable = true;
-      settings.updates.auto_update = true;
     };
     direnv = {
       enable = true;

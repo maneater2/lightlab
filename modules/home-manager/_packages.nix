@@ -36,6 +36,7 @@
         qrencode
         tree
         wget
+	microfetch
       ]
       ++ (
         if osConfig.networking.hostName != "carrotcake"
@@ -53,6 +54,13 @@
           statix
           stripe-cli
           zola
+	  nix-prefetch-scripts
+	  ranger
+	  ffmpeg
+	  ffmpegthumbnailer
+	  fzf
+	  playerctl
+	  udisks
         ]
         else [
           # Below packages are for servers only; excluded from personal machines
