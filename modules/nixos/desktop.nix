@@ -3,6 +3,13 @@
   vars,
   ...
 }: {
+
+  imports = [
+    ./_sddm/default.nix
+    ./_power-management.nix
+    ./../home-manager/_firefox.nix
+  ];
+
   environment.persistence."/nix/persist" = {
     directories = [
       "/etc/NetworkManager/system-connections"

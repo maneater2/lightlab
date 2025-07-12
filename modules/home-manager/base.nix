@@ -10,6 +10,7 @@
   imports = [
     ./_packages.nix
     ./_zsh.nix
+    ./_gtk.nix
   ];
 
   home = {
