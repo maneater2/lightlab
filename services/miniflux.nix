@@ -5,7 +5,14 @@
   ...
 }: {
 
-  sops.secrets."miniflux-cred" = {};
+  sops = { 
+    secrets = { 
+      "miniflux-cred" = {
+        format = "binary";
+        sopsFile = ./../secrets/miniflux-cred;
+      };
+    };
+  };
 
   imports = [
     ./_acme.nix
