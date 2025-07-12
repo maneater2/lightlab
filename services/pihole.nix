@@ -31,6 +31,7 @@
 
   virtualisation.oci-containers.containers."pihole" = {
     image = "pihole/pihole";
+    autoStart = true;
     ports = [
       "53:53/tcp"
       "53:53/udp"
