@@ -8,7 +8,7 @@
   stylix = {
     enable = true;
     polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/shares/themes/gruvbox-dark-medium.yml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yml";
 
     targets = {
       neovim.enable = false;
