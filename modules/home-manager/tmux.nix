@@ -36,7 +36,6 @@
       bind -n M-v split-window -h
 
       bind -n M-o new-window -c ~/para "nvim -c 'Telescope find_files' '0 Inbox/todolist.md'"
-      bind -n M-f new-window -c ~/flake "nvim -c 'Telescope find_files' flake.nix"
       bind -n M-n new-window -c ~/.config/nvim "nvim -c 'Telescope find_files' init.lua"
       bind -n M-Enter new-window
       bind -n M-c kill-pane
