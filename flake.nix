@@ -67,6 +67,15 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       carrotcake = mkNixOSConfig ./machines/carrotcake/configuration.nix;
+      strawberrypie = mkNixOSConfig ./machines/strawberrypie/configuration.nix;
+      zeppelin = nixpkgs.lib.nixosSystem {
+        system = "x86-64-linux";
+	specialArgs = {inherit inputs outputs vars;};
+	modules = [
+          (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+	  ./machines/zeppelin/configuration.nix
+	];
+      };
     };
   };
 }
