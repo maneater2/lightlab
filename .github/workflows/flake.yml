@@ -27,4 +27,3 @@ jobs:
           branch: main
           file_pattern: flake.lock
           skip_dirty_check: false
-          skip_fetch: true
