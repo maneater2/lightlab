@@ -132,4 +132,5 @@
       "/var/lib/nixarr"
     ];
   };
+  users.users.jellyfin.extraGroups = ["render"];
 }
