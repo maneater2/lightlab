@@ -14,7 +14,7 @@
     miniflux = {
       enable = true;
       config = {
-        BASE_URL = "https://miniflux.balticumvirtus.com"
+        BASE_URL = "https://miniflux.balticumvirtus.com";
         LISTEN_ADDR = "127.0.0.1:9013";
       };
     };
