@@ -73,6 +73,8 @@
     intel-gpu-tools
     # because nixarr does not include it by default
     wireguard-tools
+    # just in case
+    ffmpegFull
   ];
 
   services.nginx = {
