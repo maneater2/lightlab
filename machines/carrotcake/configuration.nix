@@ -20,6 +20,7 @@
     ./../../services/tailscale.nix
     ./../../services/nixarr.nix
     ./../../services/miniflux.nix
+    ./../../services/radicale.nix
   ];
 
   home-manager = {
