@@ -4,6 +4,11 @@
   vars,
   ...
 }: {
+  imports = [
+    ./_acme.nix
+    ./_cloudflared.nix
+    ./_nginx.nix
+  ];
 
   sops = { 
     secrets = { 
