@@ -32,7 +32,6 @@ in {
       # fonts
       noto-fonts
       noto-fonts-emoji
-      dejavu-fonts
 
       nerdfonts.override {fonts = ["JetBrainsMono"];}
     ];
