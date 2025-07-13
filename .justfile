@@ -1,7 +1,7 @@
 default:
   just --list
 
-deploy machine='' ip=''
+deploy machine='' ip='':
   @if [ -z "{{ machine }}" ] && [ -z "{{ ip }}" ]; then \
     nixos-rebuild switch --use-remote-sudo --flake .; \
   elif [ -z "{{ ip }}" ]; then \
