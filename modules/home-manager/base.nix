@@ -22,15 +22,6 @@
   };
 
   programs = {
-    fzf = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-    direnv = {
-      enable = true;
-      enableZshIntegration = true;
-      nix-direnv.enable = true;
-    };
     bat.enable = true;
     btop.enable = true;
     gallery-dl.enable = true;
@@ -40,6 +31,7 @@
     nh.enable = true;
     vim.enable = true;
     yt-dlp.enable = true;
+    fish.enable = true;
   };
 
   # Nicely reload system units when changing configs

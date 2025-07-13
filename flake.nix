@@ -63,6 +63,7 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
+      cupcake = mkNixOSConfig ./machines/cupcake/configuration.nix;
       carrotcake = mkNixOSConfig ./machines/carrotcake/configuration.nix;
       strawberrypie = mkNixOSConfig ./machines/strawberrypie/configuration.nix;
       zeppelin = nixpkgs.lib.nixosSystem {

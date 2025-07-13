@@ -52,7 +52,7 @@
     openssh.authorizedKeys.keys = [
       vars.sshPublicKeyPersonal
     ];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     hashedPasswordFile = config.sops.secrets."user-password".path;
   };
 

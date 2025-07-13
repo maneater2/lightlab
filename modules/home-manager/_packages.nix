@@ -27,7 +27,6 @@
         imagemagick
         openssl
         jdupes
-        jq
         kopia
         neo-cowsay
         pandoc
@@ -36,7 +35,6 @@
         qrencode
         tree
         wget
-        microfetch
       ]
       ++ (
         if osConfig.networking.hostName != "carrotcake"
