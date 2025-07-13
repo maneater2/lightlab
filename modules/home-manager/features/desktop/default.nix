@@ -11,6 +11,8 @@
     ./hyprland.nix
   ];
 
+  qt.platformTheme = "gtk";
+
   environment.persistence."/nix/persist" = {
     directories = [
       "/etc/NetworkManager/system-connections"
