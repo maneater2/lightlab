@@ -8,7 +8,7 @@
       ".." = "cd ..";
       cat = "bat --style=plain --theme=base16 --paging=never";
       v = "neovim";
-      microfetch="microfetch && echo";
+      microfetch = "microfetch && echo";
     };
     # inspo: https://discourse.nixos.org/t/brew-not-on-path-on-m1-mac/26770/4
     initContent = ''

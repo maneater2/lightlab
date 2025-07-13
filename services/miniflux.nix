@@ -10,8 +10,8 @@
     ./_nginx.nix
   ];
 
-  sops = { 
-    secrets = { 
+  sops = {
+    secrets = {
       "miniflux-cred" = {
         format = "binary";
         sopsFile = ./../secrets/miniflux-cred;
@@ -32,12 +32,12 @@
     nginx = {
       virtualHosts = {
         "miniflux.balticumvirtus.com" = {
-	  forceSSL = true;
-	  useACMEHost = "balticumvirtus.com";
-	  locations."/" = {
+          forceSSL = true;
+          useACMEHost = "balticumvirtus.com";
+          locations."/" = {
             proxyPass = "http://127.0.0.1:9013";
-	  };
-	};
+          };
+        };
       };
     };
   };

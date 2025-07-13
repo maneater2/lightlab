@@ -4,27 +4,27 @@
   modulesPath,
   ...
 }: {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
   boot = {
     initrd = {
       availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "e1000e"];
       luks = {
         reusePassphrases = true;
-	devices = {
+        devices = {
           "cryptroot" = {
             device = "/dev/disk/by-id/ata-INTENSO_SSD_AA000000000000000524-part2";
-	    allowDiscards = true;
-	  };
-	  "fun" = {
+            allowDiscards = true;
+          };
+          "fun" = {
             device = "/dev/disk/by-id/ata-CT1000BX500SSD1_2512E9B11AD2-part1";
-	  };
+          };
         };
       };
     };
-    kernelModules = [ "kvm-intel" ];
+    kernelModules = ["kvm-intel"];
   };
 
   fileSystems = {
@@ -39,8 +39,8 @@
       options = ["umask=0077"];
     };
     "/nix" = {
-    device = "/dev/disk/by-label/nix";
-    fsType = "ext4";
+      device = "/dev/disk/by-label/nix";
+      fsType = "ext4";
     };
     "/fun" = {
       device = "/dev/disk/by-label/fun";

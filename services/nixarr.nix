@@ -14,7 +14,7 @@
     secrets = {
       "wg.conf" = {
         format = "binary";
-	sopsFile = ./../secrets/wg.conf;
+        sopsFile = ./../secrets/wg.conf;
       };
     };
   };

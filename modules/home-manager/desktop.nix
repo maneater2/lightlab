@@ -3,7 +3,6 @@
   vars,
   ...
 }: {
-
   imports = [
     ./home-manager/firefox.nix
     ./home-manager/hyprland/default.nix

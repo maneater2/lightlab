@@ -56,7 +56,7 @@
     mkNixOSConfig = path:
       nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs vars;};
-	modules = [path];
+        modules = [path];
       };
   in {
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
@@ -67,11 +67,11 @@
       strawberrypie = mkNixOSConfig ./machines/strawberrypie/configuration.nix;
       zeppelin = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-	specialArgs = {inherit inputs outputs vars;};
-	modules = [
+        specialArgs = {inherit inputs outputs vars;};
+        modules = [
           (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
-	  ./machines/zeppelin/configuration.nix
-	];
+          ./machines/zeppelin/configuration.nix
+        ];
       };
     };
   };

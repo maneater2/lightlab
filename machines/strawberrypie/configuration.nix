@@ -21,7 +21,7 @@
     users = {
       ${vars.userName} = {
         imports = [
-	  ./../../modules/home-manager/git.nix
+          ./../../modules/home-manager/git.nix
           ./../../modules/home-manager/base.nix
         ];
       };
