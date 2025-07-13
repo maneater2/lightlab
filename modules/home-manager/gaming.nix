@@ -3,6 +3,17 @@
   lib,
   ...
 }: {
+  hardware = {
+    graphics = {
+      enable = lib.mkDefault true;
+      extraPackages = with pkgs; [
+        amdvlk
+      ];
+      extraPackages32 = with pkgs; [
+        driversi686Linx.amdvlk
+      ]
+    };
+  };
   hardware.graphics.enable = lib.mkDefault true;
   hardware.graphics.extraPackages = with pkgs; [
     amdvlk

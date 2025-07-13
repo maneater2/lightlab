@@ -19,7 +19,7 @@
     };
 
     cursor = {
-      "Bibata-Modern-Ice"
+      "Bibata-Modern-Ice";
       size = 24;
       package = pkgs.bibata-cursors;
     };
@@ -38,7 +38,7 @@
 	package = pkgs.noto-fonts;
       };
       serif = {
-        "Noto Serif";
+        name = "Noto Serif";
 	package = pkgs.noto-fonts;
       };
 

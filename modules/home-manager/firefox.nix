@@ -8,13 +8,10 @@
 }: {
   programs.firefox = {
     enable = true;
-    profiles.{vars.userName} = {
+    profiles."{vars.userName}" = {
       extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
-        bitwarden
         ublock-origin
         sponsorblock
-        darkreader
-        vimium
         multi-account-containers
         youtube-shorts-block
       ];
