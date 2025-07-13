@@ -11,7 +11,7 @@
       ];
       extraPackages32 = with pkgs; [
         driversi686Linx.amdvlk
-      ]
+      ];
     };
   };
 
