@@ -42,5 +42,5 @@
     };
   };
 
-  networking.hostName = "cupcake";
+  networking.hostName = "muffin";
 }
