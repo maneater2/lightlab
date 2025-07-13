@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  vars,
   ...
 }: {
   imports = [
