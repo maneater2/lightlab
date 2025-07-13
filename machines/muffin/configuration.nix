@@ -12,9 +12,6 @@
 
     ./../../modules/nixos/base.nix
     ./../../modules/nixos/power-management.nix
-
-    ./../../modules/home-manager/features/cli
-    ./../../modules/home-manager/features/desktop
   ];
 
   features = {
@@ -37,6 +34,8 @@
       ${vars.userName} = {
         imports = [
           ./../../modules/home-manager/base.nix
+          ./../../modules/home-manager/features/cli
+          ./../../modules/home-manager/features/desktop
         ];
       };
     };
