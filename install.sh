@@ -115,7 +115,7 @@ mount -t tmpfs none /mnt
 mkdir -pv /mnt/{boot,nix,etc/ssh,var/{lib,log}}
 mount "${ESP}" /mnt/boot
 mount "${ROOT}" /mnt/nix
-mkdir -pv /mnt/nix/{secret,initrd,persist/{etc/ssh,var/{lib,log}}}
+mkdir -pv /mnt/nix/{secret/initrd,persist/{etc/ssh,var/{lib,log}}}
 chmod 0700 /mnt/nix/secret
 mount -o bind /mnt/nix/persist/var/log /mnt/var/log
 
