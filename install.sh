@@ -44,13 +44,14 @@ luks_passphrase_prompt () {
     if [ "${luks_passphrase}" != "${luks_passphrase2}" ]; then
       output 'Passphrases do not match, please try again.'
       unset luks_passphrase{,2}
+      luks_passphrase_prompt
     fi
     unset luks_passphrase2
   fi
 }
 
 disk_prompt () {
-  sudo fdisk -l || lsblk
+   fdisk -l || lsblk
   output 'Please select the number of the corresponding disk (e.g. 1):'
   select entry in $(lsblk -dpnoNAME|grep -P "/dev/nvme|sd|mmcblk|vd");
   do
@@ -76,13 +77,13 @@ luks_prompt
 luks_passphrase_prompt
 
 # Wipe the disk
-sudo sgdisk --zap-all "${disk}"
+sgdisk --zap-all "${disk}"
 
 # Partition the disk
-output 'Creating new partition scheme on ${disk}.'
-sudo sgdisk -g "${disk}"
-sudo sgdisk -I -n 1:0:+512M -t 1:ef00 -c 1:'boot' "${disk}"
-sudo sgdisk -I -n 2:0:0 -c 2:'Nix' "${disk}"
+output "Creating new partition scheme on ${disk}."
+sgdisk -g "${disk}"
+sgdisk -I -n 1:0:+512M -t 1:ef00 -c 1:'boot' "${disk}"
+sgdisk -I -n 2:0:0 -c 2:'Nix' "${disk}"
 
 ESP='/dev/disk/by-partlabel/boot'
 
@@ -91,40 +92,40 @@ if [ "${use_luks}" = '1' ]; then
 fi
 
 output 'Informing the Kernel about the disk changes.'
-sudo partprobe "${disk}"
+partprobe "${disk}"
 
 output 'Formatting the EFI Partition as FAT32.'
-sudo mkfs.fat -F 32 -s 2 "${ESP}"
+mkfs.fat -F 32 -s 2 "${ESP}"
 
 # Create a LUKS Container for the root partition
 if [ "${use_luks}" = '1' ]; then
   output 'Creating a LUKS Container for the root partition.'
-  echo -n "${luks_passphrase}" | sudo cryptsetup luksFormat -s 512 -h sha512 "{cryptroot}" -d -
-  echo -n "${luks_passphrase}" | sudo cryptsetup open "${cryptroot}" cryptroot -d -
+  echo -n "${luks_passphrase}" |  cryptsetup luksFormat -s 512 -h sha512 "${cryptroot}" -d -
+  echo -n "${luks_passphrase}" |  cryptsetup open "${cryptroot}" cryptroot -d -
   ROOT='/dev/mapper/cryptroot'
 else
   ROOT='/dev/disk/by-partlabel/Nix'
 fi
 
 output 'Formatting the root partition as EXT4.'
-sudo mkfs.ext4 -F -L nix -m 0 "${ROOT}"
+mkfs.ext4 -F -L nix -m 0 "${ROOT}"
 
 output 'Mounting filesystems.'
-sudo mount -t tmpfs none /mnt
-sudo mkdir -pv /mnt/{boot,nix,etc/ssh,var/{lib,log}}
-sudo mount "${ESP}" /mnt/boot
-sudo mount "${ROOT}" /mnt/nix
-sudo mkdir -pv /mnt/{secret/initrd,persist/{etc/ssh,var/{lib,log}}}
-sudo chmod 0700 /mnt/nix/secret
-sudo mount -o bind /mnt/nix/persist/var/log /mnt/var/log
+mount -t tmpfs none /mnt
+mkdir -pv /mnt/{boot,nix,etc/ssh,var/{lib,log}}
+mount "${ESP}" /mnt/boot
+mount "${ROOT}" /mnt/nix
+mkdir -pv /mnt/nix/{secret,initrd,persist/{etc/ssh,var/{lib,log}}}
+chmod 0700 /mnt/nix/secret
+mount -o bind /mnt/nix/persist/var/log /mnt/var/log
 
 output 'Generating initrd SSH host key.'
-sudo ssh-keygen -t ed25519 -N "" -C "" -f /mnt/nix/secret/initrd/ssh_host_ed25519_key
+ssh-keygen -t ed25519 -N "" -C "" -f /mnt/nix/secret/initrd/ssh_host_ed25519_key
 
 output 'Converting initrd public SSH host key into public age key for sops-nix.'
-sudo nix-shell --extra-experimental-features flakes -p ssh-to-age --run 'cat /mnt/nix/secret/initrd/ssh_host_ed25519_key.pub | ssh-to-age'
+nix-shell --extra-experimental-features flakes -p ssh-to-age --run 'cat /mnt/nix/secret/initrd/ssh_host_ed25519_key.pub | ssh-to-age'
 
 output 'All steps completed successfully. NixOS is now ready to be installed.'
 output "Remember to commit and push the new server's public host key to sops-nix and update all sops secrets before installing!"
 output 'To install the NixOS configuration for hostname, run the following command'
-output 'sudo nixos-install --no-root-passwd --root /mnt --flake github:maneater2/lightlab#hostname'
+output ' nixos-install --no-root-passwd --root /mnt --flake github:maneater2/lightlab#hostname'
