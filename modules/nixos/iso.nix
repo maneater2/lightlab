@@ -11,6 +11,10 @@
     ];
   };
 
+  programs.bash.shellAliases = {
+    install = "sudo bash -c '$(curl -fsSL https://raw.githubusercontent.com/maneater2/lightlab/main/install.sh)'";
+  };
+
   security.sudo.wheelNeedsPassword = false;
 
   # needed for ventoy
