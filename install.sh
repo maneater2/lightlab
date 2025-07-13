@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Check if this is a VM
 virtualization=$(systemd-detect-virt)
 
