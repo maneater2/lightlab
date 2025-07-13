@@ -29,6 +29,7 @@
           cli = {
             fish.enable = true;
             fzf.enable = true;
+            git.enable = true;
           };
           desktop = {
             wayland.enable = true;
