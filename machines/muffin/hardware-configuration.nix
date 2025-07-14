@@ -36,7 +36,7 @@
       options = ["umask=0077"];
     };
     "/nix" = {
-      device = "/dev/disk/by-label/Nix";
+      device = "/dev/disk/by-label/nix";
       fsType = "ext4";
     };
   };
