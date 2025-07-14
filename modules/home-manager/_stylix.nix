@@ -10,6 +10,14 @@
     stylix.cursor.name = "Bibata-Modern-Ice";
     stylix.cursor.size = 24;
     stylix.polarity = "dark";
+    qt = {
+      enable = true;
+      platformTheme = "gtk";
+      style = {
+        package = pkgs.adwaita-qt;
+	name = "adwaita-dark";
+      };
+    };
 
     stylix.fonts = {
       monospace = {
