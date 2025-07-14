@@ -10,7 +10,7 @@
 
     ./hardware-configuration.nix
 
- #   ./../../modules/nixos/desktop.nix
+    ./../../modules/nixos/desktop.nix
     ./../../modules/nixos/base.nix
     ./../../modules/nixos/power-management.nix # for laptops
   ];
@@ -22,10 +22,9 @@
     users = {
       ${vars.userName} = {
         imports = [
-#	  inputs.stylix.nixosModules.stylix
           ./../../modules/home-manager/base.nix
           ./../../modules/home-manager/git.nix
-#	  ./../../modules/home-manager/desktop.nix
+	  ./../../modules/home-manager/desktop.nix
         ];
       };
     };
