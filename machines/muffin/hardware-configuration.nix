@@ -24,7 +24,7 @@
     };
   };
 
-  filesystems = {
+  fileSystems = {
     "/" = {
       device = "none";
       fsType = "tmpfs";
@@ -35,7 +35,7 @@
       fsType = "vfat";
       options = ["umask=0077"];
     };
-    "nix" = {
+    "/nix" = {
       device = "/dev/disk/by-label/Nix";
       fsType = "ext4";
     };
