@@ -9,6 +9,7 @@
 }: {
   imports = [
     ./_packages.nix
+    ./_zsh.nix
   ];
 
   home = {
@@ -21,6 +22,32 @@
   };
 
   programs = {
+    helix = {
+      enable = true;
+      defaultEditor = true;
+      settings = {
+        theme = "dark_high_contrast";
+      };
+    };
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    zellij = {
+      enable = true;
+      settings = {
+        theme = "catppuccin-mocha";
+      };
+    };
+    tealdeer = {
+      enable = true;
+      settings.updates.auto_update = true;
+    };
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
     bat.enable = true;
     btop.enable = true;
     gallery-dl.enable = true;

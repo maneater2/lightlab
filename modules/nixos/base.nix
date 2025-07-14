@@ -52,7 +52,7 @@
     openssh.authorizedKeys.keys = [
       vars.sshPublicKeyPersonal
     ];
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
     hashedPasswordFile = config.sops.secrets."user-password".path;
   };
 
@@ -80,7 +80,7 @@
     };
   };
 
-  programs.fish.enable = true;
+  programs.zsh.enable = true;
   security.sudo.wheelNeedsPassword = false;
   time.timeZone = "Europe/Vilnius";
   zramSwap.enable = true;

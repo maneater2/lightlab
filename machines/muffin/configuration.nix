@@ -7,13 +7,12 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModules.impermanence
-    inputs.stylix.nixosModules.stylix
 
     ./hardware-configuration.nix
 
+    ./../../modules/nixos/desktop.nix
     ./../../modules/nixos/base.nix
-    ./../../modules/nixos/power-management.nix
-    ./../../modules/nixos/stylix.nix
+    ./../../modules/nixos/power-management.nix # for laptops
   ];
 
   home-manager = {
@@ -23,10 +22,10 @@
     users = {
       ${vars.userName} = {
         imports = [
+	  inputs.stylix.nixosModules.stylix
           ./../../modules/home-manager/base.nix
           ./../../modules/home-manager/git.nix
- #         ./../../modules/home-manager/hyprland.nix
-          ./../../modules/home-manager/wayland.nix
+	  ./../../modules/home-manager/desktop.nix
         ];
       };
     };

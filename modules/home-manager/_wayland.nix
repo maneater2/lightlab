@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }:
@@ -17,6 +16,7 @@
     };
 
     home.packages = with pkgs; [
+      keepassxc
       hyprpaper
       grim
       hyprlock
