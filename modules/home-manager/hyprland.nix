@@ -2,15 +2,11 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
-with lib; let
-  cfg = options.features.desktop.hyprland;
-in
 {
-  options.features.desktop.hyprland.enable = mkEnableOption "hyprland config";
 
-  config = mkIf cfg.enable {
     programs.waybar.enable = true;
     wayland.windowManager.hyprland = {
       enable = true;
@@ -131,5 +127,4 @@ in
         ];
       };
     };
-  };
 }

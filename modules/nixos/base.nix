@@ -80,7 +80,7 @@
     };
   };
 
-  programs.zsh.enable = true;
+  programs.fish.enable = true;
   security.sudo.wheelNeedsPassword = false;
   time.timeZone = "Europe/Vilnius";
   zramSwap.enable = true;

@@ -7,11 +7,13 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModules.impermanence
+    inputs.stylix.nixosModules.stylix
 
     ./hardware-configuration.nix
 
     ./../../modules/nixos/base.nix
     ./../../modules/nixos/power-management.nix
+    ./../../modules/nixos/stylix.nix
   ];
 
   home-manager = {
@@ -22,21 +24,10 @@
       ${vars.userName} = {
         imports = [
           ./../../modules/home-manager/base.nix
-          ./../../modules/home-manager/features/cli
-          ./../../modules/home-manager/features/desktop
+          ./../../modules/home-manager/git.nix
+ #         ./../../modules/home-manager/hyprland.nix
+          ./../../modules/home-manager/wayland.nix
         ];
-        features = {
-          cli = {
-            fish.enable = true;
-            fzf.enable = true;
-            git.enable = true;
-          };
-          desktop = {
-            wayland.enable = true;
-            hyprland.enable = true;
-            stylix.enable = true;
-          };
-        };
       };
     };
   };

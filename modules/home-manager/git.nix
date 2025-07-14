@@ -5,12 +5,7 @@
   config,
   ...
 }: 
-with lib; let
-  cfg = config.features.cli.git;
-in {
-  options.features.cli.git.enable = mkEnableOption "git";
-
-  config = mkIf cfg.enable {
+{
     home = {
       # inspo: https://jeppesen.io/git-commit-sign-nix-home-manager-ssh/
       file.".ssh/allowed_signers".text = "* ${vars.sshPublicKeyPersonal}";
@@ -29,5 +24,4 @@ in {
         };
       };
     };
-  };
 }

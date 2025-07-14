@@ -4,21 +4,16 @@
   config,
   ...
 }:
-with lib; let
-  cfg = options.features.desktop.stylix;
-in
 {
-  options.features.desktop.stylix.enable = mkEnableOption "stylix colors";
 
-  config = mkIf cfg.enable {
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    stylix.cursor.package = pkgs.bibata-cursors;
-    stylix.cursor.name = "Bibata-Modern-Ice";
+  #  stylix.cursor.package = pkgs.bibata-cursors;
+ #   stylix.cursor.name = "Bibata-Modern-Ice";
     stylix.polarity = "dark";
 
     stylix.fonts = {
       monospace = {
-        package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
+        package = pkgs.nerd-fonts.jetbrains-mono;
 	name = "JetBrainsMono Nerd Font Mono";
       };
       sansSerif = {
@@ -30,5 +25,4 @@ in
 	name = "DejaVu Serif";
       };
     };
-  };
 }

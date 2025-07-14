@@ -30,7 +30,6 @@
     nh.enable = true;
     vim.enable = true;
     yt-dlp.enable = true;
-    fish.enable = true;
   };
 
   # Nicely reload system units when changing configs

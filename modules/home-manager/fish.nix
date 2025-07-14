@@ -4,12 +4,8 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.features.cli.fish;
-  in {
-  options.features.cli.fish.enable = mkEnableOption "enable extended fish configuration";
+{
 
-  config = mkIf cfg.enable {
     programs.fish = {
       enable = true;
       loginSHellInit = ''
@@ -29,5 +25,4 @@ with lib; let
 	ps = "procs";
       };
     };
-  };
 }
