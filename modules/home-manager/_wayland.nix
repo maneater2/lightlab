@@ -15,6 +15,8 @@
       };
     };
 
+  qt.platformTheme = "gtk";
+
     home.packages = with pkgs; [
       keepassxc
       hyprpaper
