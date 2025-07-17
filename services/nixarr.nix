@@ -6,9 +6,8 @@
   ...
 }: {
   imports = [
-    ./_acme.nix
-    ./_nginx.nix
     ./_cloudflared.nix
+    ./_keycloak.nix
   ];
 
   sops = {
