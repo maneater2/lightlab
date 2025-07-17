@@ -16,6 +16,7 @@ in
   sops-secrets = {
     keycloak-pass = {};
   };
+
   services.keycloak = {
     enable = true;
     initialAdminPassword = config.sops.secrets."keycloak-pass".path;
@@ -35,7 +36,7 @@ in
 
   services.nginx.virtualHosts."${fqdn}" = {
     forceSSL = true;
-    useACMEHost = "balticumvirtus.com"
+    useACMEHost = "balticumvirtus.com";
 
     locations."/" = {
       proxyPass = "http://127.0.0.1:8821";
