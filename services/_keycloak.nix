@@ -12,6 +12,7 @@
 
   sops.secrets."keycloak-pass" = {};
 
+
   services.keycloak = {
     enable = true;
     initialAdminPassword = "mamaimacriminal123";
@@ -51,9 +52,10 @@
     };
   };
 
-  environment.persistence."/nix/persist" = {
-    directories = [ "/var/lib/keycloak" ]; # also add a directory for postgresql if nextcloud.nix is not used, can't have it on both files at the same time
-  };
+ # environment.persistence."/nix/persist" = {
+ # actually this directory is not needed because keycloak uses postgresql anyway!
+ #   directories = [ "/var/lib/keycloak" ]; # also add a directory for postgresql if nextcloud.nix is not used, can't have it on both files at the same time
+ # };
 
   environment.systemPackages = with pkgs; [
     keycloak
