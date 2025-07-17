@@ -48,4 +48,8 @@ in
       proxyWebsockets = true;
     };
   };
+
+  environment.persistence."/var/lib/keycloak" = {
+    directories = [ "/var/lib/keycloak" ];
+  };
 }
