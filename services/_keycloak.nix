@@ -43,10 +43,10 @@
     useACMEHost = "balticumvirtus.com";
     locations."/" = {
       proxyPass = "http://127.0.0.1:8821";
-      proxySetHeaders = {
-        "X-Forwarded-Proto" = "https";
-        "X-Forwarded-Host" = "cloak.balticumvirtus.com";
-      };
+      extraConfig = ''
+        proxy_set_header X-Forwarded-Proto https;
+	proxy_set_header X-Forwarded-Host $host;
+      '';
     };
   };
 
