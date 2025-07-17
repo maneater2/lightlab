@@ -18,7 +18,6 @@ in
   services.keycloak = {
     enable = true;
     initialAdminPassword = config.sops.secrets."keycloak-pass".path;
-    database.passwordFile = config.sops.secrets."keycloak-pass".path;
     settings = {
       spi-theme-static-max-age = "-1";
       spi-theme-cache-themes = false;
@@ -43,6 +42,6 @@ in
   };
 
   environment.persistence."/nix/persist" = {
-    directories = [ "/var/lib/keycloak" ];
+    directories = [ "/var/lib/keycloak" ]; # also add a directory for postgresql if nextcloud.nix is not used, can't have it on both files at the same time
   };
 }
