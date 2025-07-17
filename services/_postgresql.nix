@@ -48,7 +48,7 @@
       Type = "oneshot";
       User = "postgres";
       ExecStart = pkgs.writeShellScript "set-keycloak-db-password" ''
-        psql -tAc "ALTER USER keycloak WITH PASSWORD '$(cat ${config.sops.secrets."keycloak-db-pass".path})';"
+        psql -tAc "ALTER USER keycloak WITH PASSWORD '$(cat ${config.sops.secrets."keycloak-pass".path})';"
       '';
     };
   };
