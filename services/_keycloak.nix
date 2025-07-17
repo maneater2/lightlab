@@ -18,6 +18,7 @@ in
   services.keycloak = {
     enable = true;
     initialAdminPassword = config.sops.secrets."keycloak-pass".path;
+    database.type = "h2"; # im too lazy for postgresql
     settings = {
       spi-theme-static-max-age = "-1";
       spi-theme-cache-themes = false;
