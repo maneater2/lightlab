@@ -7,7 +7,6 @@
   imports = [
     ./_cloudflared.nix
     ./_keycloak.nix
-    ./_postgresql.nix
   ];
 
   sops.secrets.nextcloud-adminpassfile = {
@@ -78,6 +77,7 @@
   environment.persistence."/nix/persist" = {
     directories = [
       "/var/lib/nextcloud"
+      "/var/lib/postgresql"
     ];
   };
 
