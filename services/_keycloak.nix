@@ -57,6 +57,4 @@
   ];
 
   services.postgresql.enable = true;
-
-  environment.noXlibs = false; # this was in the manual ok
 }
