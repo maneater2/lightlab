@@ -36,6 +36,19 @@
           useACMEHost = "balticumvirtus.com";
           locations."/" = {
             proxyPass = "http://127.0.0.1:9013";
+	    extraConfig = ''
+              auth_oidc_client_id "miniflux";
+              auth_oidc_client_secret "pd6t94126Iux3B8GvqlwIGZeK3PeuQZj";
+              auth_oidc_discovery "https://cloak.balticumvirtus.com/auth/realms/master/.well-known/openid-configuration";
+              auth_oidc_scope "openid email profile";
+              auth_oidc_redirect_uri "https://miniflux.balticumvirtus.com/*";
+
+              auth_oidc_logout_path /logout;
+              auth_oidc_pass_authorization_header on;
+
+              auth_oidc_session_cookie keycloak-session;
+              auth_oidc_session_timeout 1h;
+            '';
           };
         };
       };
