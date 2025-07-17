@@ -11,6 +11,7 @@ in
   imports = [
     ./_acme.nix
     ./_nginx.nix
+    ./_postgresql.nix
   ];
 
   sops.secrets."keycloak-pass" = {};
@@ -18,7 +19,14 @@ in
   services.keycloak = {
     enable = true;
     initialAdminPassword = config.sops.secrets."keycloak-pass".path;
-    plugins = [ pkgs.custom_keycloak_plugins.keycloak_spi_trusted_device ];
+    database = {
+      type = "postgresql";
+      username = "keycloak";
+      database = "keycloak";
+      host = "localhost";
+      port = 5432;
+      passwordFile = config.sops.secrets."keycloak-pass".path; 
+    };
     settings = {
       spi-theme-static-max-age = "-1";
       spi-theme-cache-themes = false;
