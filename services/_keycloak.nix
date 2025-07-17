@@ -10,10 +10,7 @@
     ./_nginx.nix
   ];
 
-  sops.secrets."keycloak-pass" = {
-    owner = "keycloak";
-    group = "keycloak";
-  };
+  sops.secrets."keycloak-pass" = {};
 
   services.keycloak = {
     enable = true;
