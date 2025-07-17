@@ -27,6 +27,12 @@
           "watch.balticumvirtus.com" = {
             service = "http://localhost:8096";
           };
+	  "miniflux.balticumvirtus.com" = {
+            service = "http://localhost:9013";
+	  };
+	  "cloud.balticumvirtus.com" = {
+            service = "http://localhost:80";
+	  };
         };
       };
     };
