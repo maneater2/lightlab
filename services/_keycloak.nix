@@ -49,7 +49,7 @@ in
     };
   };
 
-  environment.persistence."/var/lib/keycloak" = {
+  environment.persistence."/nix/persist" = {
     directories = [ "/var/lib/keycloak" ];
   };
 }
