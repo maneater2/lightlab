@@ -13,9 +13,7 @@ in
     ./_nginx.nix
   ];
 
-  sops-secrets = {
-    keycloak-pass = {};
-  };
+  sops.secrets."keycloak-pass" = {};
 
   services.keycloak = {
     enable = true;
