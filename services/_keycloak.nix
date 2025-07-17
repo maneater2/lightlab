@@ -37,12 +37,11 @@
     };
   };
 
-  services.nginx.virtualHosts."keycloak.balticumvirtus.com" = {
+  services.nginx.virtualHosts."cloak.balticumvirtus.com" = {
     forceSSL = true;
     useACMEHost = "balticumvirtus.com";
-
     locations."/" = {
-      proxyPass = "http://localhost:${toString config.services.keycloak.settings.http-port}";
+      proxyPass = "http://127.0.0.1:8821";
     };
   };
 
