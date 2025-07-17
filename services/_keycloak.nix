@@ -34,7 +34,6 @@
       hostname-strict-https = false;
       proxy-headers = "xforwarded";
       http-enabled = true;
-      proxy = "passthrough";
     };
   };
 
