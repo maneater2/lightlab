@@ -37,6 +37,7 @@
       hostname-strict-https = false;
       proxy-headers = "xforwarded";
       http-enabled = true;
+      frontend-url = "https://cloak.balticumvirtus.com";
     };
   };
 
