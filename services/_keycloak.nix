@@ -22,7 +22,6 @@ in
     database = {
       type = "postgresql";
       username = "keycloak";
-      database = "keycloak";
       host = "localhost";
       port = 5432;
       passwordFile = config.sops.secrets."keycloak-pass".path; 
