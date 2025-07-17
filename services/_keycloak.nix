@@ -14,7 +14,7 @@
 
   services.keycloak = {
     enable = true;
-    initialAdminPassword = config.sops.secrets."keycloak-pass".path;
+    initialAdminPassword = "mamaimacriminal123";
 #    themes = with pkgs; [
 #      custom = custom_keycloak_themes.custom;
 #    ];
