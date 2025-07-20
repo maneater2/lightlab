@@ -32,9 +32,9 @@
 	OAUTH2_CLIENT_ID = "miniflux";
 	OAUTH2_CLIENT_SECRET = config.sops.secrets."miniflux-client-secret".path;
 	OAUTH2_REDIRECT_URL = "https://miniflux.balticumvirtus.com/oauth2/oidc/callback";
-	OAUTH2_OIDC_DISCOVERY_ENDPOINT = "https://cloak.balticumvirtus.com/realms/services";
+	OAUTH2_OIDC_DISCOVERY_ENDPOINT = "https://cloak.balticumvirtus.com/realms/master";
 	OAUTH2_USER_CREATION = "1";
-	DISABLE_LOCAL_AUTH = "1";
+	#DISABLE_LOCAL_AUTH = "1";
       };
     };
 
