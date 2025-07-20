@@ -16,6 +16,7 @@
         format = "binary";
         sopsFile = ./../secrets/miniflux-cred;
       };
+      "miniflux-client-secret" = {};
     };
   };
 
@@ -29,7 +30,7 @@
         LISTEN_ADDR = "127.0.0.1:9013";
 	OAUTH2_PROVIDER = "oidc";
 	OAUTH2_CLIENT_ID = "miniflux";
-	OAUTH2_CLIENT_SECRET = config.sops.secrets."miniflux-cred".path;
+	OAUTH2_CLIENT_SECRET = config.sops.secrets."miniflux-client-secret".path;
 	OAUTH2_REDIRECT_URL = "https://miniflux.balticumvirtus.com/oauth2/oidc/callback";
 	OAUTH2_OIDC_DISCOVERY_ENDPOINT = "https://cloak.balticumvirtus.com/realms/services";
 	OAUTH2_USER_CREATION = "1";
