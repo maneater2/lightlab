@@ -27,7 +27,7 @@
   };
   environment.persistence."/nix/persist" = {
     directories = [
-      "/var/lib/prosody"
+      "/etc/prosody"
     ];
   };
   networking.firewall.allowedTCPPorts = [ 5222 ];
