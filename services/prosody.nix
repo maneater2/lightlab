@@ -28,5 +28,9 @@
       "/etc/prosody"
     ];
   };
+  systemd.tmpfiles.rules = [
+    "d /etc/prosody 0755 prosody prosody -"
+    "R /etc/prosody 0755 prosody prosody -"
+  ];
   networking.firewall.allowedTCPPorts = [ 5222 ];
 }
