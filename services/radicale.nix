@@ -6,7 +6,8 @@
 }: {
   imports = [
     ./_cloudflared.nix
-    ./_keycloak.nix
+    ./_acme.nix
+    ./_nginx.nix
   ];
 
   sops.secrets."radicale-htpasswd" = {

@@ -20,6 +20,7 @@
     ./../../services/nixarr.nix
     ./../../services/miniflux.nix
     ./../../services/radicale.nix
+    ./../../services/prosody.nix
   ];
 
   home-manager = {
