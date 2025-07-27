@@ -25,4 +25,9 @@
   };
   networking.firewall.allowedTCPPorts = [ 5222 ];
   users.users.nginx.extraGroups = ["acme"];
+  environment.persistence."/nix/persist" = {
+    directories = [
+      "/var/lib/prosody"
+    ];
+  };
 }
