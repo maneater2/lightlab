@@ -24,4 +24,5 @@
     };
   };
   networking.firewall.allowedTCPPorts = [ 5222 ];
+  users.users.nginx.extraGroups = ["acme"];
 }
