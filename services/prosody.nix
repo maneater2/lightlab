@@ -9,8 +9,6 @@
     prosody = {
       enable = true;
       admins = [ "pielover@balticumvirtus.com" ];
-      ssl.cert = "/var/lib/acme/balticumvirtus.com/fullchain.pem";
-      ssl.key = "/var/lib/acme/balticumvirtus.com/key.pem";
       virtualHosts."balticumvirtus.com" = {
         enabled = true;
 	domain = "balticumvirtus.com";
