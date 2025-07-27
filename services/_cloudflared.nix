@@ -24,14 +24,8 @@
         credentialsFile = config.sops.secrets."cloudflare-tunnel".path;
         default = "http_status:404";
         ingress = {
-          "watch.balticumvirtus.com" = {
-            service = "http://localhost:8096";
-          };
 	  "miniflux.balticumvirtus.com" = {
             service = "http://localhost:9013";
-	  };
-	  "cloud.balticumvirtus.com" = {
-            service = "http://localhost:80";
 	  };
         };
       };
