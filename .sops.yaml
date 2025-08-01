@@ -1,9 +1,7 @@
 keys:
   - &carrotcake age1ln4c0mk7q48w8vl9l7wp4l4vmlex0hwutvf4azluq9hf6w8f6qdsve2y6f
-  - &muffin age14u8ts3kagdtn7wdwyrpxapjez8qltdqsv42yk07htyjwlzmltcssu58l5u
 creation_rules:
   - path_regex: secrets/[^/]+(\.(yaml|json|env|ini|conf))?$
     key_groups:
       - age:
         - *carrotcake
-        - *muffin
