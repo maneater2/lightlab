@@ -136,25 +136,25 @@
 
   users.users.jellyfin.extraGroups = ["render"];
 
-  #systemd.services = {
-  #  "cloudflared-route-tunnel-jellyfin" = {
-  #    description = "Point traffic to tunnel subdomain";
-  #    after = [
-  #      "network-online.target"
-  #      "cloudflared-tunnel-lightlab-01.service"
-  #    ];
-  #    wants = [
-  #      "network-online.target"
-  #      "cloudflared-tunnel-lightlab-01.service"
-  #    ];
-  #    wantedBy = ["default.target"];
-  #    serviceConfig = {
-  #      Type = "oneshot";
-  #      # workaround to ensure dns is available before setting up cloudflare tunnel
-  #      # inspo: chatgpt
-  #      ExecStartPre = "${pkgs.bash}/bin/bash -c 'for i in {1..10}; do ${pkgs.iputils}/bin/ping -c1 api.cloudflare.com && exit 0 || sleep 3; done; exit 1'";
-  #      ExecStart = "${lib.getExe pkgs.cloudflared} tunnel route dns 'lightlab-01' 'watch.balticumvirtus.com'";
-  #    };
-  #  };
-  #};
+  systemd.services = {
+    "cloudflared-route-tunnel-jellyfin" = {
+      description = "Point traffic to tunnel subdomain";
+      after = [
+        "network-online.target"
+        "cloudflared-tunnel-lightlab-01.service"
+      ];
+      wants = [
+        "network-online.target"
+        "cloudflared-tunnel-lightlab-01.service"
+      ];
+      wantedBy = ["default.target"];
+      serviceConfig = {
+        Type = "oneshot";
+        # workaround to ensure dns is available before setting up cloudflare tunnel
+        # inspo: chatgpt
+        ExecStartPre = "${pkgs.bash}/bin/bash -c 'for i in {1..10}; do ${pkgs.iputils}/bin/ping -c1 api.cloudflare.com && exit 0 || sleep 3; done; exit 1'";
+        ExecStart = "${lib.getExe pkgs.cloudflared} tunnel route dns 'lightlab-01' 'watch.balticumvirtus.com'";
+      };
+    };
+  };
 }

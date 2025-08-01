@@ -16,7 +16,6 @@
     ./../../modules/nixos/auto-update.nix
 
     ./../../services/nextcloud.nix
-    ./../../services/tailscale.nix
     ./../../services/nixarr.nix
     ./../../services/miniflux.nix
     ./../../services/radicale.nix
