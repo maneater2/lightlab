@@ -76,11 +76,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1772683386,
-        "narHash": "sha256-uiYArwJv6pBDuWgmbAJx2+TYFrufn2MdLio5nn0sdRQ=",
+        "lastModified": 1772769774,
+        "narHash": "sha256-LthbrKdtCzqaYTKYQcEw4fFZJtWVMm7BExqaV0slIus=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "a992662e5a78c82423a1a58d28ad00d49548ff80",
+        "rev": "098825863efb4f6fdafa7ac35906c1093a45773b",
         "type": "gitlab"
       },
       "original": {
